@@ -37,9 +37,24 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/alertifyjs/build/css/alertify.min.css",
+              "./node_modules/alertifyjs/build/css/themes/semantic.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-spinner/animations/ball-pulse.css",
+              "node_modules/ngx-spinner/animations/ball-spin-clockwise-fade-rotating.css",
+              "node_modules/ngx-spinner/animations/ball-spin-clockwise.css"
+              
+              
             ],
-            "scripts": [],
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/alertifyjs/build/alertify.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -102,6 +117,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -109,5 +125,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "482f3169-dcc0-444f-a172-152b3c4fe512"
   }
 }
