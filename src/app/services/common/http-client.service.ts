@@ -12,58 +12,58 @@ export class HttpClientService {
   constructor(private httpClient: HttpClient, @Inject("baseUrl") private baseUrl: string) { }
 
 
-  private url(requestParmeter: Partial<RequestParameters>) {
+  private url(requestParameter: Partial<RequestParameters>) {
 
-    return `${requestParmeter.baseUrl ? requestParmeter.baseUrl : this.baseUrl}/${requestParmeter.controller}${requestParmeter.action ? `/ ${requestParmeter.action}` : ""}`;
+    return `${requestParameter.baseUrl ? requestParameter.baseUrl : this.baseUrl}/${requestParameter.controller}${requestParameter.action ? `/ ${requestParameter.action}` : ""}`;
 
   }
 
-  get<T>(requestParmeter: Partial<RequestParameters>, id?: string): Observable<T> {
+  get<T>(requestParameter: Partial<RequestParameters>, id?: string): Observable<T> {
 
     let url: string = "";
 
-    if (requestParmeter.fullEndPoint)
-      requestParmeter.fullEndPoint;
+    if (requestParameter.fullEndPoint)
+      requestParameter.fullEndPoint;
 
     else
-      url = `${this.url(requestParmeter)}${id ? `/${id}` : ""}`;
+      url = `${this.url(requestParameter)}${id ? `/${id}` : ""}${requestParameter.queryString ? `?${requestParameter.queryString}` : ""}`;
 
-    return this.httpClient.get<T>(url, { headers: requestParmeter.headers })
+    return this.httpClient.get<T>(url, { headers: requestParameter.headers })
 
 
   }
 
 
-  post<T>(requestParmeter: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
+  post<T>(requestParameter: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
 
     let url: string = "";
-    if (requestParmeter.fullEndPoint)
-      url = requestParmeter.fullEndPoint;
+    if (requestParameter.fullEndPoint)
+      url = requestParameter.fullEndPoint;
     else
-      url = `${this.url(requestParmeter)}`;
+      url = `${this.url(requestParameter)}${requestParameter.queryString ? `?${requestParameter.queryString}` : ""}`;
 
-    return this.httpClient.post<T>(url, body, { headers: requestParmeter.headers });
+    return this.httpClient.post<T>(url, body, { headers: requestParameter.headers });
 
 
   }
-  put<T>(requestParmeter: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
+  put<T>(requestParameter: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
     let url: string = "";
-    if (requestParmeter.fullEndPoint)
-      url = requestParmeter.fullEndPoint;
+    if (requestParameter.fullEndPoint)
+      url = requestParameter.fullEndPoint;
     else
-      url = `${this.url(requestParmeter)}`;
+      url = `${this.url(requestParameter)}${requestParameter.queryString ? `?${requestParameter.queryString}` : ""}`;
 
-    return this.httpClient.put<T>(url, body, { headers: requestParmeter.headers });
+    return this.httpClient.put<T>(url, body, { headers: requestParameter.headers });
   }
 
-  delete<T>(requestParmeter: Partial<RequestParameters>, id: string) : Observable<T> {
+  delete<T>(requestParameter: Partial<RequestParameters>, id: string) : Observable<T> {
 let url: string = "";
-    if (requestParmeter.fullEndPoint)
-      url = requestParmeter.fullEndPoint;
+    if (requestParameter.fullEndPoint)
+      url = requestParameter.fullEndPoint;
     else
-      url = `${this.url(requestParmeter)}/${id}`;
+      url = `${this.url(requestParameter)}/${id}${requestParameter.queryString ? `?${requestParameter.queryString}` : ""}`;
 
-    return this.httpClient.delete<T>(url, { headers: requestParmeter.headers });
+    return this.httpClient.delete<T>(url, { headers: requestParameter.headers });
 
    }
 }
@@ -71,6 +71,7 @@ let url: string = "";
 export class RequestParameters {
   controller?: string;
   action?: string;
+  queryString?: string;
 
   headers?: HttpHeaders;
   baseUrl?: string;
