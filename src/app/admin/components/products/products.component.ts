@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, Output, ViewChild} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {BaseComponent, SpinnerType} from '../../../base/base.component';
 import {HttpClientService} from '../../../services/common/http-client.service';
 import {Create_Product} from "../../../contracts/create_product";
 import {ListComponent} from "./list/list.component";
+import {FileUploadOptions} from "../../../services/common/file-upload/file-upload.component";
 
 
 @Component({
@@ -22,7 +23,14 @@ export class ProductsComponent extends BaseComponent implements OnInit {
   }
 
   @ViewChild(ListComponent) listComponents: ListComponent;
+  @Output() fileUploadOptions: Partial<FileUploadOptions> = {
+    action: 'upload',
+    controller: 'products',
+    explanation: "Drag and drop a file here or click to browse..",
+    isAdminPage : true,
+    accept: ".jpg, .png, .jpeg, .gif, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .rar, .zip"
 
+  };
   createdProduct(product: Create_Product) {
     this.listComponents.getProducts();
 
