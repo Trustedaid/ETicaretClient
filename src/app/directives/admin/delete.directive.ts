@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent, DeleteState} from "../../dialogs/delete-dialog/delete-dialog.component";
 import {AlertifyService, MessageType, Position} from "../../services/admin/alertify.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DialogService} from "../../services/common/dialog.service";
 
 @Directive({
   selector: '[appDelete]'
@@ -19,7 +20,8 @@ export class DeleteDirective {
     private httpClientService: HttpClientService,
     private spinner: NgxSpinnerService,
     public dialog: MatDialog,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private dialogService: DialogService
   ) {
     const img = _renderer.createElement("img");
     img.setAttribute("src", "assets/cross.png");
@@ -36,49 +38,53 @@ export class DeleteDirective {
 
   @HostListener("click")
   async onClick() {
-    this.openDialog(async () => {
-      await this.spinner.show(SpinnerType.BallSpinClockwise);
-      const td: HTMLTableCellElement = this.element.nativeElement;
-
-      this.httpClientService.delete({
-        controller: this.controller,
-      }, this.id).subscribe(data => {
-        $(td.parentElement).animate({
-          opacity: 0,
-          left: "+=50",
-          height: "toggle"
-        }, 750, () => {
-          this.refresh.emit();
-          this.alertifyService.message("Product deleted successfully", {
-            dismissOthers: true,
-            messageType: MessageType.Success,
-            position: Position.TopRight
-          })
-        });
-      }, (errorResponse : HttpErrorResponse)=> {
-        this.spinner.hide(SpinnerType.BallSpinClockwise);
-        this.alertifyService.message("An error occurred while deleting the product",{
-          dismissOthers: true,
-          messageType: MessageType.Error,
-          position: Position.TopRight})
-      })
-    });
-  }
-
-  openDialog(afterClosed: any): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '%25',
-      height: `%25`,
+    this.dialogService.openDialog({
+      componentType: DeleteDialogComponent,
       data: DeleteState.Yes,
-    });
+      afterClosed: async () => {
+        await this.spinner.show(SpinnerType.BallSpinClockwise);
+        const td: HTMLTableCellElement = this.element.nativeElement;
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (result == DeleteState.Yes) {
-        afterClosed();
-
+        this.httpClientService.delete({
+          controller: this.controller,
+        }, this.id).subscribe(data => {
+          $(td.parentElement).animate({
+            opacity: 0,
+            left: "+=50",
+            height: "toggle"
+          }, 750, () => {
+            this.refresh.emit();
+            this.alertifyService.message("Product deleted successfully", {
+              dismissOthers: true,
+              messageType: MessageType.Success,
+              position: Position.TopRight
+            })
+          });
+        }, (errorResponse : HttpErrorResponse)=> {
+          this.spinner.hide(SpinnerType.BallSpinClockwise);
+          this.alertifyService.message("An error occurred while deleting the product",{
+            dismissOthers: true,
+            messageType: MessageType.Error,
+            position: Position.TopRight})
+        })
       }
     });
   }
+
+  // openDialog(afterClosed: any): void {
+  //   const dialogRef = this.dialog.open(DeleteDialogComponent, {
+  //     width: '%25',
+  //     height: `%25`,
+  //     data: DeleteState.Yes,
+  //   });
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     if (result == DeleteState.Yes) {
+  //       afterClosed();
+  //
+  //     }
+  //   });
+  // }
 
 }

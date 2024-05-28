@@ -4,6 +4,13 @@ import {HttpClientService} from "../http-client.service";
 import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {AlertifyService, MessageType, Position} from "../../admin/alertify.service";
 import {CustomToastrService, ToastrMessageType, ToastrPosition} from "../../ui/custom-toastr.service";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogService} from "../dialog.service";
+import {
+  FileUploadDialogComponent,
+  FileUploadDialogState
+} from "../../../dialogs/file-upload-dialog/file-upload-dialog.component";
+
 
 @Component({
   selector: 'app-file-upload',
@@ -14,14 +21,16 @@ export class FileUploadComponent {
   constructor(
     private httpClientService: HttpClientService,
     private alertifyService: AlertifyService,
-    private toasterService: CustomToastrService) {
+    private toasterService: CustomToastrService,
+    private dialog: MatDialog,
+    private dialogService: DialogService) {
   }
 
   public files: NgxFileDropEntry[];
   @Input() options: Partial<FileUploadOptions>;
 
   public selectedFiles(files: NgxFileDropEntry[]) {
-    console.log(files);
+
     this.files = files;
     const fileData = new FormData();
     for (const file of files) {
@@ -30,51 +39,74 @@ export class FileUploadComponent {
       });
 
     }
-    console.log(fileData);
+    this.dialogService.openDialog({
+      componentType: FileUploadDialogComponent,
+      data: FileUploadDialogState.Yes,
+      afterClosed: () => {
 
-    this.httpClientService.post({
-      controller: this.options.controller,
-      action: this.options.action,
-      queryString: this.options.queryString,
-      headers: new HttpHeaders({"responseType": "blob"})
-    }, fileData).subscribe(data => {
-        console.log(data);
-          const message: string = "File uploaded successfully.";
-          if (this.options.isAdminPage) {
-            this.alertifyService.message(message,
-              {
-                dismissOthers: true,
-                messageType: MessageType.Success,
-                position: Position.TopRight
-              }
-            );
-          } else {
-            this.toasterService.message(message, "success", {
-              messageType: ToastrMessageType.Success,
-              position: ToastrPosition.TopRight
-            });
-          }
-        }
-        , (errorResponse: HttpErrorResponse) => {
-        console.error(errorResponse);
 
-          const message: string = "File couldn't be uploaded. Please try again.";
-          if (this.options.isAdminPage) {
-            this.alertifyService.message(message,
-              {
-                dismissOthers: true,
-                messageType: MessageType.Error,
-                position: Position.TopCenter
-              }
-            );
-          } else {
-            this.toasterService.message(message, "Upload Failed !", {
-              messageType: ToastrMessageType.Error,
-              position: ToastrPosition.TopCenter
-            });
+        this.httpClientService.post({
+          controller: this.options.controller,
+          action: this.options.action,
+          queryString: this.options.queryString,
+          headers: new HttpHeaders({"responseType": "blob"})
+        }, fileData).subscribe(data => {
+
+            const message: string = "File uploaded successfully.";
+            if (this.options.isAdminPage) {
+              this.alertifyService.message(message,
+                {
+                  dismissOthers: true,
+                  messageType: MessageType.Success,
+                  position: Position.TopRight
+                }
+              );
+            } else {
+              this.toasterService.message(message, "success", {
+                messageType: ToastrMessageType.Success,
+                position: ToastrPosition.TopRight
+              });
+            }
           }
-        });
+          , (errorResponse: HttpErrorResponse) => {
+
+
+            const message: string = "File couldn't be uploaded. Please try again.";
+            if (this.options.isAdminPage) {
+              this.alertifyService.message(message,
+                {
+                  dismissOthers: true,
+                  messageType: MessageType.Error,
+                  position: Position.TopCenter
+                }
+              );
+            } else {
+              this.toasterService.message(message, "Upload Failed !", {
+                messageType: ToastrMessageType.Error,
+                position: ToastrPosition.TopCenter
+              });
+            }
+          });
+
+      }
+
+    });
   }
+
+  // openDialog(afterClosed: any): void {
+  //   const dialogRef = this.dialog.open(FileUploadDialogComponent, {
+  //     width: '%25',
+  //     height: `%25`,
+  //     data: FileUploadDialogState.Yes,
+  //   });
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     if (result == FileUploadDialogState.Yes) {
+  //       afterClosed();
+  //     }
+  //   });
+  // }
 }
 
 export class FileUploadOptions {

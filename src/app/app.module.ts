@@ -14,6 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { DeleteDirective } from './directives/admin/delete.directive';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { FileUploadComponent } from './services/common/file-upload/file-upload.component';
+import { FileUploadDialogComponent } from './dialogs/file-upload-dialog/file-upload-dialog.component';
+import {MatButton} from "@angular/material/button";
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { FileUploadComponent } from './services/common/file-upload/file-upload.c
     AdminModule, UiModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule, MatButton, MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogClose
 
 
   ],
