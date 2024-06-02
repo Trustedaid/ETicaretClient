@@ -23,9 +23,10 @@ export class ProductsComponent extends BaseComponent implements OnInit {
   }
 
   @ViewChild(ListComponent) listComponents: ListComponent;
+
   @Output() fileUploadOptions: Partial<FileUploadOptions> = {
-    action: 'upload',
-    controller: 'products',
+    action: "upload",
+    controller: "products",
     explanation: "Drag and drop a file here or click to browse..",
     isAdminPage : true,
     accept: ".jpg, .png, .jpeg, .gif, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .rar, .zip"
