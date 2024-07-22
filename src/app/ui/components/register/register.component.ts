@@ -1,14 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {User} from "../../../entities/user";
+import {UserService} from "../../../services/common/models/user.service";
+import {Create_User} from "../../../contracts/users/create_user";
+import {CustomToastrService, ToastrMessageType, ToastrPosition} from "../../../services/ui/custom-toastr.service";
+import {BaseComponent} from "../../../base/base.component";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {
+export class RegisterComponent extends BaseComponent implements OnInit {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastService: CustomToastrService,
+              spinner: NgxSpinnerService) {
+    super(spinner);
   }
 
   frm: FormGroup;
@@ -41,13 +48,26 @@ export class RegisterComponent implements OnInit {
 
   submitted: boolean = false;
 
-  onSubmit(data: User) {
+  async onSubmit(user: User) {
     this.submitted = true;
 
-    debugger;
+
     if (this.frm.invalid)
       return;
 
+    const result: Create_User = await this.userService.create(user);
 
+    if (result.succeeded) {
+      this.toastService.message(result.message, "User Created Successfully", {
+        messageType: ToastrMessageType.Success,
+        position: ToastrPosition.TopRight
+      });
+
+    } else {
+      this.toastService.message(result.message, "An Error Occured during registration", {
+        messageType: ToastrMessageType.Error,
+        position: ToastrPosition.TopRight
+      });
+    }
   }
 }
