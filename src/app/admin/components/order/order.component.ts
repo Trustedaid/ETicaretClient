@@ -8,14 +8,14 @@ import { BaseComponent, SpinnerType } from '../../../base/base.component';
   styleUrl: './order.component.scss'
 })
 export class OrderComponent extends BaseComponent implements OnInit {
-  
+
   constructor(spinner: NgxSpinnerService) {
     super(spinner);
   }
 
   ngOnInit(): void {
 
-    this.showSpinner(SpinnerType.BallPulse);
+
 
   }
 

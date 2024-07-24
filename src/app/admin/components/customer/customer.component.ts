@@ -8,13 +8,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrl: './customer.component.scss'
 })
 export class CustomerComponent extends BaseComponent implements OnInit{
-  
+
   constructor(spinner : NgxSpinnerService) {
     super(spinner);
    }
 
-  ngOnInit(): void {    
-    this.showSpinner(SpinnerType.BallPulse);
+  ngOnInit(): void {
+
   }
 
 }

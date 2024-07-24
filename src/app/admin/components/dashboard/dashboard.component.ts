@@ -14,7 +14,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
    }
   ngOnInit(): void {
     this.alertify.message("Welcome to Administration", { messageType: MessageType.Warning, position: Position.TopCenter, delay: 5, dismissOthers: true })
-    this.showSpinner(SpinnerType.BallPulse)
+
   }
 
   w() {

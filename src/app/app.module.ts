@@ -17,6 +17,7 @@ import { FileUploadComponent } from './services/common/file-upload/file-upload.c
 import { FileUploadDialogComponent } from './dialogs/file-upload-dialog/file-upload-dialog.component';
 import {MatButton} from "@angular/material/button";
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import {JwtModule} from "@auth0/angular-jwt";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,14 @@ import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from
     AdminModule, UiModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    HttpClientModule, MatButton, MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogClose
+    HttpClientModule, MatButton, MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogClose,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: () => localStorage.getItem("accessToken"),
+        allowedDomains: ["localhost:7030"],
+        
+      }
+    }),
 
 
   ],
