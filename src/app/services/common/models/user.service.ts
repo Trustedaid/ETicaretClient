@@ -40,7 +40,7 @@ export class UserService {
 
       this.toastrService.message("User logged in successfully", "Login successful", {
         messageType: ToastrMessageType.Success,
-        position: ToastrPosition.TopRight
+        position: ToastrPosition.TopCenter
       })
     }
 

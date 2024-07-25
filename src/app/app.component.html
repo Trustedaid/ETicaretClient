@@ -23,12 +23,12 @@
 
 
             <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Eren OĞUZ</a>
+              <a class="nav-link disabled" aria-disabled="true" *ngIf="authService.isAuthenticated">Eren OĞUZ</a>
             </li>
 
 
             <li>
-              <a routerLink="admin" class="btn btn-outline-success" type="submit">Administration</a>
+              <a routerLink="admin" class="btn btn-outline-success" type="submit" *ngIf="authService.isAuthenticated">Administration</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -37,10 +37,21 @@
               </a>
               <ul class="dropdown-menu">
                 <li class="nav-item">
-                  <a class="btn btn-outline-success" aria-current="page" routerLink="register">Sign Up</a>
+                  <a class="btn btn-outline-success" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                  <a class="btn btn-dark" aria-current="page" routerLink="login">Login</a>
+                  <a class="btn btn-dark" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Login</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="btn btn-group-vertical" aria-current="page"  *ngIf="authService.isAuthenticated">Details</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-group-vertical" aria-current="page"  *ngIf="authService.isAuthenticated">Orders</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="btn btn-outline-dark" aria-current="page"  style="color: red" (click)="signOut()" *ngIf="authService.isAuthenticated">Logout</a>
                 </li>
 
                 <!--                <li><a class="dropdown-item" href="#">Action</a></li>-->
