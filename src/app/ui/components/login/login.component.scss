@@ -1,0 +1,73 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$card-background: #ffffff;
+$text-color: #333;
+$border-radius: 0.5rem;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+// General styles
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: 'Arial', sans-serif;
+}
+
+// Centering the card and adding spacing
+.row.justify-content-center {
+  margin-top: 5rem;
+}
+
+// Styling the card
+.card {
+  background-color: $card-background;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 2rem;
+
+  // Card header
+  h2 {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  // Input fields and labels
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    border-radius: $border-radius;
+    border: 1px solid $secondary-color;
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  // Button styling
+  .btn-primary {
+    background-color: $primary-color;
+    border: none;
+    border-radius: $border-radius;
+    padding: 0.75rem;
+    &:hover {
+      background-color: #0056b3($primary-color, 10%);
+    }
+  }
+
+  // Invalid feedback styling
+  .invalid-feedback {
+    display: block;
+    color: #e3342f;
+    font-size: 0.875rem;
+  }
+
+  // Google sign-in button
+  asl-google-signin-button {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+  }
+}

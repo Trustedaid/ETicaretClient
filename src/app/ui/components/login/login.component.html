@@ -1,26 +1,49 @@
-<div class="row">
-  <div class="col-md-4"></div>
+<!--<div class="row">-->
+<!--  <div class="col-md-4"></div>-->
+<!--  <div class="col-md-4">-->
+
+
+<!--      <div class="form-group">-->
+<!--        <label for="username">Username</label>-->
+<!--        <input #txtUsernameOrEmail type="text" class="form-control" id="username"-->
+<!--               placeholder="Username or email address">-->
+<!--        <small class="form-text text-muted invalid-feedback">*******</small>-->
+
+<!--      </div>-->
+
+<!--      <div class="form-group">-->
+<!--        <label for="password">Password</label>-->
+<!--        <input #txtPassword type="password" class="form-control" id="password" placeholder="Password">-->
+<!--      </div>-->
+
+
+<!--      <button style="margin-top: 5px" type="submit" class="btn btn-primary"-->
+<!--              (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Sign-in-->
+<!--      </button>-->
+
+<!--  </div>-->
+<!--  <div class="col-md-4"></div>-->
+<!--</div>-->
+
+
+<div class="row justify-content-center mt-5">
   <div class="col-md-4">
-
-
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input #txtUsernameOrEmail type="text" class="form-control" id="username"
-               placeholder="Username or email address">
-        <small class="form-text text-muted invalid-feedback">*******</small>
-
+    <div class="card p-4 shadow-sm">
+      <h2 class="text-center mb-4">Sign In</h2>
+      <div class="form-group mb-3">
+        <label for="username" class="form-label">Username or Email</label>
+        <input #txtUsernameOrEmail type="text" class="form-control" id="username" placeholder="Enter your username or email" aria-label="Username or Email">
+        <div class="invalid-feedback">Please enter a valid username or email.</div>
       </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input #txtPassword type="password" class="form-control" id="password" placeholder="Password">
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input #txtPassword type="password" class="form-control" id="password" placeholder="Enter your password" aria-label="Password">
+        <div class="invalid-feedback">Please enter your password.</div>
       </div>
-
-
-      <button style="margin-top: 5px" type="submit" class="btn btn-primary"
-              (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Sign-in
-      </button>
-
+      <button type="submit" class="btn btn-primary w-100" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Sign In</button>
+      <div class="mt-3">
+        <asl-google-signin-button type="standard" size="large" text="signin_with" shape="circle" theme="outline"></asl-google-signin-button>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4"></div>
 </div>

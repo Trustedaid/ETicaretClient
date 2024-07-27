@@ -1,10 +1,9 @@
 <div class="row">
   <div class="col-md-2"></div>
-
   <div class="col-md-8">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #f8f9fa; border-radius: 8px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);">
       <div class="container-fluid">
-        <a class="navbar-brand" routerLink="">ERYA Portal</a>
+        <a class="navbar-brand" routerLink="" style="font-weight: bold;">ERYA Portal</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -17,18 +16,18 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" routerLink="products">Products</a>
             </li>
+          </ul>
+          <form class="d-flex mx-auto" role="search" style="width: 40%;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" routerLink="basket">Cart</a>
             </li>
 
-
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true" *ngIf="authService.isAuthenticated">Eren OĞUZ</a>
-            </li>
-
-
-            <li>
-              <a routerLink="admin" class="btn btn-outline-success" type="submit" *ngIf="authService.isAuthenticated">Administration</a>
+            <li *ngIf="authService.isAuthenticated" class="nav-item">
+              <a routerLink="admin" class="btn btn-outline-success" type="submit">Administration</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -40,72 +39,45 @@
                   <a class="btn btn-outline-success" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                  <a class="btn btn-dark" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Login</a>
+                  <a class="btn btn-outline-success" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Login</a>
+                </li>
+
+                <li *ngIf="authService.isAuthenticated" class="nav-item">
+                  <a class="nav-link" aria-disabled="true">Eren OĞUZ</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="btn btn-group-vertical" aria-current="page"  *ngIf="authService.isAuthenticated">Details</a>
+                  <a class="btn btn-group-vertical" aria-current="page" *ngIf="authService.isAuthenticated">Details</a>
                 </li>
                 <li class="nav-item">
-                  <a class="btn btn-group-vertical" aria-current="page"  *ngIf="authService.isAuthenticated">Orders</a>
+                  <a class="btn btn-group-vertical" aria-current="page" *ngIf="authService.isAuthenticated">Orders</a>
                 </li>
-
                 <li class="nav-item">
-                  <a class="btn btn-outline-dark" aria-current="page"  style="color: red" (click)="signOut()" *ngIf="authService.isAuthenticated">Logout</a>
+                  <a class="btn btn-outline-dark" aria-current="page" style="color: red" (click)="signOut()" *ngIf="authService.isAuthenticated">Logout</a>
                 </li>
-
-                <!--                <li><a class="dropdown-item" href="#">Action</a></li>-->
-                <!--                <li><a class="dropdown-item" href="#">Another action</a></li>-->
-                <!--                <li>-->
-                <!--                  <hr class="dropdown-divider">-->
-                <!--                </li>-->
-                <!--                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
               </ul>
             </li>
-
-
           </ul>
-
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-
-
-          </form>
-
         </div>
-
       </div>
-
     </nav>
-
   </div>
   <div class="col-md-2"></div>
-
-
 </div>
-
 
 <div class="row">
   <div class="col-md-2">
-    <!-- Sol kenar boşluğu -->
-
+    <!-- Left margin -->
   </div>
   <div class="col-md-8">
-
-
     <div class="col-md-12" style="height: 220%;">
       <router-outlet></router-outlet>
     </div>
   </div>
   <div class="col-md-2">
-    <!-- Sağ kenar boşluğu -->
-
-
+    <!-- Right margin -->
   </div>
 </div>
 
 <ngx-spinner size="medium" name="s1" type="ball-pulse"></ngx-spinner>
 <ngx-spinner size="medium" name="s2" type="ball-spin-clockwise"></ngx-spinner>
-
-
