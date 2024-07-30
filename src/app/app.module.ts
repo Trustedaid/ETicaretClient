@@ -66,10 +66,10 @@ import {
               '622372834950-f44qev133neei81frlgf69o22cu8a7kg.apps.googleusercontent.com'
             )
           },
-          // {
-          //   id: FacebookLoginProvider.PROVIDER_ID,
-          //   provider: new FacebookLoginProvider('clientId')
-          // }
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('509559531586453')
+          }
         ],
         onError: (err) => {
           console.error(err);

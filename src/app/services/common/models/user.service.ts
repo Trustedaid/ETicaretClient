@@ -24,45 +24,5 @@ export class UserService {
 
   }
 
-  async login(userNameOrEmail: string, password: string, callBackFunction?: () => void): Promise<any> {
-    const observable: Observable<any | TokenResponse> = this.httpClientService.post<any | TokenResponse>({
-      controller: "users",
-      action: "login"
-    }, {
-      userNameOrEmail, password
-    });
 
-    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
-
-    console.log(tokenResponse);
-    console.log(tokenResponse.token.accessToken);
-
-    if (tokenResponse) {
-      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
-
-      this.toastrService.message("User logged in successfully", "Login successful", {
-        messageType: ToastrMessageType.Success,
-        position: ToastrPosition.TopCenter
-      })
-    }
-
-    callBackFunction();
-  }
-
-  async googleLogin(user: SocialUser, callBackFunction?: () => void): Promise<any> {
-    const observable: Observable<SocialUser | TokenResponse> = this.httpClientService.post<SocialUser | TokenResponse>({
-      action: "Google-Login",
-      controller: "users",
-    }, user);
-    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
-    if (tokenResponse) {
-      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
-
-      this.toastrService.message("User logged in successfully via Google Account", "Login successful", {
-        messageType: ToastrMessageType.Success,
-        position: ToastrPosition.TopCenter
-      })
-    }
-callBackFunction();
-  }
 }
