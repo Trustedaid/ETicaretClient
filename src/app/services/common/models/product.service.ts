@@ -84,4 +84,15 @@ export class ProductService {
     successCallBack();
 
   }
+
+  async setShowcaseImage(imageId: string, productId: string, successCallBack?: () => void) {
+    const setShowcaseImageObservable = this.httpClientService.get({
+      controller: "products",
+      action: "SetShowcaseImage",
+      queryString: `imageId=${imageId}&productId=${productId}`
+    });
+    await firstValueFrom(setShowcaseImageObservable);
+    successCallBack();
+
+  }
 }
