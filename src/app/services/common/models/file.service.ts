@@ -11,7 +11,7 @@ export class FileService {
   constructor(private httpClientService: HttpClientService) {
   }
 
-  async getBaseStorageUrl() {
+  async getBaseStorageUrl(): Promise<BaseUrl> {
     const getObservable: Observable<BaseUrl> = this.httpClientService.get<BaseUrl>({
       controller: "files",
       action: "GetBaseStorageUrl"

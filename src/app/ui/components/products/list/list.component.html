@@ -4,7 +4,8 @@
       <div class="card h-100">
 
         <img *ngIf="!product.productImageFiles.length" src="assets/resim-yok.png" class="card-img-top" alt="...">
-        <img *ngIf="product.productImageFiles.length" src="{{baseUrl.url}}/{{product.imagePath}}" class="card-img-top" alt="...">
+        <img width="300" height="350" *ngIf="product.productImageFiles.length" src="{{product.imagePath}}" class="card-img-top" alt="...">
+
 
         <div class="card-body">
           <h5 class="card-title">{{ product.name }}</h5>
