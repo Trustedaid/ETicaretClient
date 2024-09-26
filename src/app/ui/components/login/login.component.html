@@ -34,12 +34,12 @@
       <div class="form-group mb-3">
         <label for="username" class="form-label">Username</label>
         <input #txtUsernameOrEmail type="text" class="form-control" id="username" placeholder="Enter your username or email" aria-label="Username or Email">
-        <div class="invalid-feedback">Please enter a valid username or email.</div>
+<!--        <div class="invalid-feedback">Please enter a valid username or email.</div>-->
       </div>
       <div class="form-group mb-3">
         <label for="password" class="form-label">Password</label>
         <input #txtPassword type="password" class="form-control" id="password" placeholder="Enter your password" aria-label="Password">
-        <div class="invalid-feedback">Please enter your password.</div>
+<!--        <div class="invalid-feedback">Please enter your password.</div>-->
       </div>
       <button type="submit" class="btn btn-primary w-100" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">Sign In</button>
       <div class="mt-3">

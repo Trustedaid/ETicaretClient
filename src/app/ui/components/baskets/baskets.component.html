@@ -1,1 +1,50 @@
-<p>baskets works!</p>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Shopping Cart</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="{{cartItem.cartItemId}}" *ngFor="let cartItem of cartItems; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ cartItem.name }}</td>
+            <td>{{ cartItem.price }}</td>
+            <td>
+              <input type="number" [value]="cartItem.quantity" style="width: 60px;" data-id="{{cartItem.cartItemId}}"
+                     (change)="changeQuantity($event)"/>
+
+
+            </td>
+
+            <td>
+              <button type="button" class="btn btn-danger" (click)="removeCartItem(cartItem.cartItemId)">X</button>
+            </td>
+
+          </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Continue to Payment</button>
+      </div>
+    </div>
+  </div>
+</div>

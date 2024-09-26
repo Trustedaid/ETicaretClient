@@ -26,6 +26,8 @@ import {
   SocialLoginModule
 } from "@abacritt/angularx-social-login";
 import {HttpErrorHandlerInterceptorService} from "./services/common/http-error-handler-interceptor.service";
+import {BasketsModule} from "./ui/components/baskets/baskets.module";
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import {HttpErrorHandlerInterceptorService} from "./services/common/http-error-h
 
       }
     }),
-    SocialLoginModule, GoogleSigninButtonModule
+    SocialLoginModule,
+    GoogleSigninButtonModule, BasketsModule,
 
 
   ],

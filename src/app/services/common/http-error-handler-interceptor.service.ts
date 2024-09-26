@@ -3,13 +3,16 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode} fr
 import {catchError, Observable, of} from 'rxjs';
 import {CustomToastrService, ToastrMessageType, ToastrPosition} from "../ui/custom-toastr.service";
 import {UserAuthService} from "./models/user-auth.service";
+import {Router} from "@angular/router";
+import {NgxSpinnerService} from "ngx-spinner";
+import {SpinnerType} from "../../base/base.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
 
-  constructor(private toastrService: CustomToastrService, private userAuthService: UserAuthService) {
+  constructor(private toastrService: CustomToastrService, private userAuthService: UserAuthService, private router: Router, private spinner: NgxSpinnerService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -18,12 +21,22 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
 
       switch (error.status) {
         case HttpStatusCode.Unauthorized:
-          this.toastrService.message("You are not authorized to access this page", "401 Unauthorized", {
-            messageType: ToastrMessageType.Error,
-            position: ToastrPosition.BottomFullWidth
-          });
-          console.log("401 401 401 abc");
-          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken")).then(data => {
+
+          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken"), (state) => {
+            if (!state) {
+              const url = this.router.url;
+              if (url == "/products")
+                this.toastrService.message("You need to login to access this page", "Please Login!", {
+                  messageType: ToastrMessageType.Error,
+                  position: ToastrPosition.BottomFullWidth
+                });
+               else
+                this.toastrService.message("You are not authorized to access this page", "401 Unauthorized", {
+                  messageType: ToastrMessageType.Error,
+                  position: ToastrPosition.BottomFullWidth
+                });
+            }
+          }).then(data => {
           });
           break;
         case HttpStatusCode.InternalServerError:
@@ -57,6 +70,7 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
       }
 
 
+      this.spinner.hide(SpinnerType.BallPulse);
       return of(error);
     }));
   }
