@@ -23,6 +23,7 @@ export class BasketsComponent extends BaseComponent implements OnInit {
   async ngOnInit() {
     this.showSpinner(SpinnerType.BallPulse)
    this.cartItems = await this.cartService.get()
+    console.log(this.cartItems)
     this.hideSpinner(SpinnerType.BallPulse)
   }
 
@@ -46,5 +47,7 @@ export class BasketsComponent extends BaseComponent implements OnInit {
 
 
   }
+
+
 
 }

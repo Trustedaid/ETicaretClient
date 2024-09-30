@@ -85,6 +85,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.showSpinner(SpinnerType.BallPulse)
     let basketItem : CreateCartItem = new CreateCartItem();
     basketItem.productId = product.id;
+    console.log(product.id);
     basketItem.quantity = 1;
 
     await this.cartService.add(basketItem);

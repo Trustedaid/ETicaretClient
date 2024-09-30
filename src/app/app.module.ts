@@ -27,12 +27,14 @@ import {
 } from "@abacritt/angularx-social-login";
 import {HttpErrorHandlerInterceptorService} from "./services/common/http-error-handler-interceptor.service";
 import {BasketsModule} from "./ui/components/baskets/baskets.module";
+import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-component.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DynamicLoadComponentDirective
 
   ],
   imports: [
@@ -51,7 +53,7 @@ import {BasketsModule} from "./ui/components/baskets/baskets.module";
       }
     }),
     SocialLoginModule,
-    GoogleSigninButtonModule, BasketsModule,
+    GoogleSigninButtonModule,
 
 
   ],
