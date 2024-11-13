@@ -15,27 +15,26 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DeleteDialogComponent} from "../../../dialogs/delete-dialog/delete-dialog.component";
 import {FileUploadModule} from "../../../services/common/file-upload/file-upload.module";
 import {DialogModule} from "../../../dialogs/dialog.module";
+import {DeleteModule} from "../../../directives/admin/delete.module";
 
 
 @NgModule({
-    declarations: [
-        ProductsComponent,
-        CreateComponent,
-        ListComponent,
-        DeleteDirective
-    ],
-    exports: [
-        ListComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([
-            {"path": "", "component": ProductsComponent}
-        ]),
-        MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatPaginatorModule,
-        MatDialogModule, DialogModule,
-        FileUploadModule
-    ]
+  declarations: [
+    ProductsComponent,
+    CreateComponent,
+    ListComponent,
+
+  ],
+
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {"path": "", "component": ProductsComponent}
+    ]),
+    MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatPaginatorModule,
+    MatDialogModule, DialogModule,
+    FileUploadModule, DeleteModule
+  ]
 })
 export class ProductsModule {
 }

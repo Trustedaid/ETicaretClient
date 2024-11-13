@@ -1,13 +1,12 @@
-import {Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2} from '@angular/core';
-import {HttpClientService} from "../../services/common/http-client.service";
-import {ProductService} from "../../services/common/models/product.service";
-import {NgxSpinnerService} from "ngx-spinner";
-import {SpinnerType} from "../../base/base.component";
-import {MatDialog} from "@angular/material/dialog";
-import {DeleteDialogComponent, DeleteState} from "../../dialogs/delete-dialog/delete-dialog.component";
-import {AlertifyService, MessageType, Position} from "../../services/admin/alertify.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {DialogService} from "../../services/common/dialog.service";
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
+import { HttpClientService } from "../../services/common/http-client.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { SpinnerType } from "../../base/base.component";
+import { MatDialog } from "@angular/material/dialog";
+import { DeleteDialogComponent, DeleteState } from "../../dialogs/delete-dialog/delete-dialog.component";
+import { AlertifyService, MessageType, Position } from "../../services/admin/alertify.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { DialogService } from "../../services/common/dialog.service";
 
 @Directive({
   selector: '[appDelete]'
@@ -31,8 +30,7 @@ export class DeleteDirective {
     _renderer.appendChild(element.nativeElement, img);
   }
 
-
-  @Input() id: string
+  @Input() id: string;
   @Input() controller: string;
   @Output() refresh: EventEmitter<any> = new EventEmitter();
 
@@ -53,23 +51,25 @@ export class DeleteDirective {
             left: "+=50",
             height: "toggle"
           }, 750, () => {
-            this.refresh.emit();
+            this.refresh.emit(); // refresh olayını tetikleyerek dışarıya bildiriyoruz.
             this.alertifyService.message("Product deleted successfully", {
               dismissOthers: true,
               messageType: MessageType.Success,
               position: Position.TopRight
-            })
+            });
           });
-        }, (errorResponse : HttpErrorResponse)=> {
+        }, (errorResponse: HttpErrorResponse) => {
           this.spinner.hide(SpinnerType.BallSpinClockwise);
-          this.alertifyService.message("An error occurred while deleting the product",{
+          this.alertifyService.message("An error occurred while deleting the product", {
             dismissOthers: true,
             messageType: MessageType.Error,
-            position: Position.TopRight})
-        })
+            position: Position.TopRight
+          });
+        });
       }
     });
   }
+}
 
   // openDialog(afterClosed: any): void {
   //   const dialogRef = this.dialog.open(DeleteDialogComponent, {
@@ -87,4 +87,4 @@ export class DeleteDirective {
   //   });
   // }
 
-}
+

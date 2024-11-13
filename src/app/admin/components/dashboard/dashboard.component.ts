@@ -14,20 +14,25 @@ import {HubUrls} from "../../../constants/hub-urls";
 export class DashboardComponent extends BaseComponent implements OnInit {
   constructor(private alertify: AlertifyService, spinner: NgxSpinnerService, private signalRService: SignalRService) {
     super(spinner);
-    signalRService.start(HubUrls.ProductHub);
+    // signalRService.start(HubUrls.ProductHub);
+    // signalRService.start(HubUrls.OrderHub);
   }
 
   ngOnInit(): void {
     // this.alertify.message("Welcome to Administration", { messageType: MessageType.Warning, position: Position.TopCenter, delay: 5, dismissOthers: true })
-    this.signalRService.on(ReceiveFunctions.ProductAddedMessageReceiveFunction, message => {
+    this.signalRService.on(HubUrls.ProductHub,ReceiveFunctions.ProductAddedMessageReceiveFunction, message => {
       this.alertify.message(message, {
         messageType: MessageType.Notify,
         position: Position.BottomCenter,
-        delay: 5,
-        dismissOthers: true
       })
+    });
 
-    })
+    this.signalRService.on(HubUrls.OrderHub,ReceiveFunctions.OrderAddedMessageReceiveFunction, message => {
+      this.alertify.message(message, {
+        messageType: MessageType.Notify,
+        position: Position.BottomCenter,
+      })
+    });
   }
 
   w() {

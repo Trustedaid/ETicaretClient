@@ -60,6 +60,7 @@ import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-
   providers: [
     provideAnimationsAsync(),
     {provide: "baseUrl", useValue: "https://localhost:7030/api", multi: true},
+    {provide: "baseSignalRUrl", useValue: "https://localhost:7030/", multi: true},
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

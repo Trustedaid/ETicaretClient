@@ -14,13 +14,11 @@ export class ProductService {
   constructor(private httpClientService: HttpClientService) {
   }
 
-  create(product: Create_Product, successCallBack?: any, errorCallBack?: (errorMessage: string) => void) {
+  create(product: Create_Product, successCallBack: any = () => {}, errorCallBack: (errorMessage: string) => void = () => {}) {
     this.httpClientService.post({
       controller: "products"
     }, product).subscribe(result => {
-
-      successCallBack();
-
+      successCallBack();  // Callback varsa çağrılır, yoksa boş fonksiyon çağrılır
     }, (errorResponse: HttpErrorResponse) => {
       const _error: Array<{ key: string, value: Array<string> }> = errorResponse.error;
       let message = "";
@@ -29,12 +27,12 @@ export class ProductService {
           message += `${_v}<br>`;
         });
       });
-      errorCallBack(message);
+      errorCallBack(message);  // Hata callback'i çağrılır
     });
-
   }
 
-  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{
+  async read(page: number = 0, size: number = 5, successCallBack: () => void = () => {},
+             errorCallBack: (errorMessage: string) => void = () => {}): Promise<{
     totalCount: number;
     products: List_Product[]
   }> {
@@ -46,8 +44,8 @@ export class ProductService {
       queryString: `page=${page}&size=${size}`
     }).toPromise();
 
-    promiseData.then(d => successCallBack())
-      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))
+    promiseData.then(d => successCallBack())  // Başarı callback'i çağrılır
+      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message));  // Hata callback'i çağrılır
 
     return await promiseData;
   }
@@ -73,16 +71,15 @@ export class ProductService {
     return images;
   }
 
-  async deleteImage(id: string, imageId: string, successCallBack?: () => void) {
+  async deleteImage(id: string, imageId: string, successCallBack: () => void = () => {}) {
     const deleteObservable = this.httpClientService.delete({
       controller: "products",
       action: "deleteProductImage",
       queryString: `imageId=${imageId}`
-    }, id)
+    }, id);
 
     await firstValueFrom(deleteObservable);
-    successCallBack();
-
+    successCallBack();  // Callback varsa çağrılır
   }
 
   async setShowcaseImage(imageId: string, productId: string, successCallBack?: () => void) {
