@@ -21,6 +21,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {DialogModule} from "../../../dialogs/dialog.module";
 import {FileUploadModule} from "../../../services/common/file-upload/file-upload.module";
 import {ProductsModule} from "../products/products.module";
+import {DeleteModule} from "../../../directives/admin/delete.module";
 
 
 
@@ -35,7 +36,7 @@ import {ProductsModule} from "../products/products.module";
       {path: "", component: OrderComponent}
     ]),
     MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatPaginatorModule,
-    MatDialogModule, DialogModule,
+    MatDialogModule, DialogModule,DeleteModule
   ]
 })
 export class OrderModule { }
