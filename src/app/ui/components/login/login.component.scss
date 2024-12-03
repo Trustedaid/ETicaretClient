@@ -56,6 +56,14 @@ body {
       background-color: #0056b3($primary-color, 10%);
     }
   }
+  .btn-link {
+    font-size: 1rem;
+    color: $primary-color;
+    &:hover {
+      text-decoration: underline;
+      color: #000073 ($primary-color, 10%);
+    }
+  }
 
   // Invalid feedback styling
   .invalid-feedback {
