@@ -16,10 +16,12 @@ export class UpdatePasswordComponent extends BaseComponent implements OnInit {
               private activatedRoute: ActivatedRoute, private alertifyService: AlertifyService, private userService: UserService, private router: Router) {
     super(spinner);
   }
-
   state: any;
 
+
   ngOnInit() {
+
+
     this.showSpinner(SpinnerType.BallPulse)
     this.activatedRoute.params.subscribe({
       next: async params => {

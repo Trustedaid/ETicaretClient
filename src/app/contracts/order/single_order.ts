@@ -5,5 +5,6 @@ export class SingleOrder {
   address: string;
   createdDate: Date;
   orderCode: string;
+  completed: boolean;
 
 }
