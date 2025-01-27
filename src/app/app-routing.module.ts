@@ -12,6 +12,7 @@ const routes: Routes = [
       { path: "customers", loadChildren: () => import("./admin/components/customer/customer.module").then(module => module.CustomerModule) },
       { path: "products", loadChildren: () => import("./admin/components/products/products.module").then(module => module.ProductsModule) },
       { path: "orders", loadChildren: () => import("./admin/components/order/order.module").then(module => module.OrderModule) },
+      { path: "authorize-menu", loadChildren: () => import("./admin/components/authorize-menu/authorize-menu.module").then(module => module.AuthorizeMenuModule) },
     ], canActivate: [authGuard]
   },
 
