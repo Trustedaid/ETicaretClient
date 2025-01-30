@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: "products", loadChildren: () => import("./admin/components/products/products.module").then(module => module.ProductsModule) },
       { path: "orders", loadChildren: () => import("./admin/components/order/order.module").then(module => module.OrderModule) },
       { path: "authorize-menu", loadChildren: () => import("./admin/components/authorize-menu/authorize-menu.module").then(module => module.AuthorizeMenuModule) },
+      { path: "roles", loadChildren: () => import("./admin/components/role/role.module").then(module => module.RoleModule) },
     ], canActivate: [authGuard]
   },
 

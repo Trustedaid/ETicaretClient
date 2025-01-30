@@ -32,7 +32,7 @@ export class DeleteDirective {
 
   @Input() id: string;
   @Input() controller: string;
-  @Output() refresh: EventEmitter<any> = new EventEmitter();
+  @Output() callback: EventEmitter<any> = new EventEmitter();
 
   @HostListener("click")
   async onClick() {
@@ -51,7 +51,7 @@ export class DeleteDirective {
             left: "+=50",
             height: "toggle"
           }, 750, () => {
-            this.refresh.emit(); // refresh olayını tetikleyerek dışarıya bildiriyoruz.
+            this.callback.emit(); // refresh olayını tetikleyerek dışarıya bildiriyoruz.
             this.alertifyService.message("Product deleted successfully", {
               dismissOthers: true,
               messageType: MessageType.Success,
