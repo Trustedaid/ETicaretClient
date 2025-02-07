@@ -1,3 +1,55 @@
+/* Genel Tablo Stili */
+.mat-elevation-z8 {
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  overflow: hidden;
+}
+
+/* Tablo Genişliği */
 table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+/* Başlık Satırı */
+th {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Hücreler */
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Satırlar için Hover Efekti */
+tr:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  transition: background-color 0.3s ease;
+}
+
+/* İcon Stili */
+td img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+td img:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+/* Paginator için Stil */
+.mat-paginator {
+  margin-top: 10px;
+  text-align: right;
+  background: none;
+  border-radius: 0 0 12px 12px;
 }

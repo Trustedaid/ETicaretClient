@@ -10,18 +10,18 @@ export class RoleService {
   constructor(private httpClientService: HttpClientService) {
   }
 
-  async getRoles(page: number, size: number, successCallback?: () => void, errorCallback?: (error) => void) {
+  async getRoles(page: number, size: number, successCallBack?: () => void, errorCallBack?: (error) => void)
+  {
     const observable: Observable<any> = this.httpClientService.get({
       controller: "roles",
       queryString: `page=${page}&size=${size}`
     });
     const promiseData = firstValueFrom(observable);
-
-    promiseData.then(successCallback).catch(errorCallback);
+    promiseData.then(successCallBack)
+      .catch(errorCallBack);
     return await promiseData;
-
-
   }
+
 
   async create(name: string, successCallback?: () => void, errorCallback?: (error) => void) {
     const observable: Observable<any> = this.httpClientService.post({

@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RoleComponent} from './role.component';
 import {RouterModule} from "@angular/router";
-import {ProductsComponent} from "../products/products.component";
 import {FileUploadModule} from "../../../services/common/file-upload/file-upload.module";
 import {MatDrawer, MatDrawerContainer, MatDrawerContent, MatSidenavModule} from "@angular/material/sidenav";
 import {MatFormFieldModule} from "@angular/material/form-field";
