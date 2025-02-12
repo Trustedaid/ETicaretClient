@@ -15,9 +15,8 @@
 </div>
 
 <mat-selection-list #rolesComponent>
-  <mat-list-option *ngFor="let role of listRoles" selected="{{role.selected}}">
+  <mat-list-option *ngFor="let role of listRoles" [selected]="role.selected === true">
     {{ role.name }}
-
   </mat-list-option>
 </mat-selection-list>
 

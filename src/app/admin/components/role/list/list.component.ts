@@ -7,7 +7,7 @@ import {AlertifyService, MessageType, Position} from '../../../../services/admin
 import {DialogService} from '../../../../services/common/dialog.service';
 
 import {RoleService} from '../../../../services/common/models/role.service';
-import {List_Role} from "../../../../dialogs/role/List_Role";
+import {List_Role} from "../../../../contracts/role/List_Role";
 
 @Component({
   selector: 'app-list',

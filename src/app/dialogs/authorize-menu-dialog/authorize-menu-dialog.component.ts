@@ -2,12 +2,13 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {BaseDialog} from '../base/base-dialog';
 import {RoleService} from "../../services/common/models/role.service";
-import {List_Role} from "../role/List_Role";
+
 import {MatSelectionList} from "@angular/material/list";
 import {AuthorizationEndpointService} from "../../services/common/models/authorization-endpoint.service";
 import {error} from "jquery";
 import {NgxSpinnerService} from "ngx-spinner";
 import {SpinnerType} from "../../base/base.component";
+import {List_Role} from "../../contracts/role/List_Role";
 
 @Component({
   selector: 'app-authorize-menu-dialog',

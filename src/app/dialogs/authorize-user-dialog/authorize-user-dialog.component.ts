@@ -4,10 +4,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {RoleService} from "../../services/common/models/role.service";
 import {AuthorizationEndpointService} from "../../services/common/models/authorization-endpoint.service";
 import {NgxSpinnerService} from "ngx-spinner";
-import {List_Role} from "../role/List_Role";
+
 import {MatSelectionList} from "@angular/material/list";
 import {SpinnerType} from "../../base/base.component";
 import {UserService} from "../../services/common/models/user.service";
+import {List_Role} from "../../contracts/role/List_Role";
 
 @Component({
   selector: 'app-authorize-user-dialog',
@@ -41,6 +42,8 @@ export class AuthorizeUserDialogComponent extends BaseDialog<AuthorizeUserDialog
         selected: this.assignedRoles?.indexOf(r.name) > -1
       }
     });
+
+
 
   }
 

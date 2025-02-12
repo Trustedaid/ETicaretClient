@@ -37,6 +37,10 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
                 });
             }
           }).then(data => {
+            this.toastrService.message("You are not authorized to access this page", "401 Unauthorized", {
+              messageType: ToastrMessageType.Error,
+              position: ToastrPosition.BottomFullWidth
+            });
           });
           break;
         case HttpStatusCode.InternalServerError:

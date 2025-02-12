@@ -51,8 +51,10 @@ export class DeleteDirective {
             left: "+=50",
             height: "toggle"
           }, 750, () => {
-            this.callback.emit(); // refresh olayını tetikleyerek dışarıya bildiriyoruz.
-            this.alertifyService.message("Product deleted successfully", {
+            this.callback.emit();
+
+
+            this.alertifyService.message(`${this.controller == 'roles' ? 'Role' : 'Product'} deleted successfully.`, {
               dismissOthers: true,
               messageType: MessageType.Success,
               position: Position.TopRight

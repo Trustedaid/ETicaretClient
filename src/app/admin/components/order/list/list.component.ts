@@ -29,7 +29,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createdDate', 'completed',`viewDetail`, `delete`];
+  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createdDate', 'completed', `viewDetail`, `delete`];
   dataSource: MatTableDataSource<List_Order> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -41,7 +41,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     } = await this.orderService.getAllOrders(this.paginator ? this.paginator.pageIndex : 0,
       this.paginator ? this.paginator.pageSize : 10, () =>
 
-        this.hideSpinner(SpinnerType.BallSpinClockwise), errorMessage =>
+        this.hideSpinner(SpinnerType.BallSpinClockwise), (errorMessage: any) =>
         this.alertifyService.message(errorMessage, {
           dismissOthers: true,
           messageType: MessageType.Error,
@@ -64,7 +64,7 @@ export class ListComponent extends BaseComponent implements OnInit {
 
   }
 
-  showDetail(id:string){
+  showDetail(id: string) {
 
     this.dialogService.openDialog({
       componentType: OrderDetailDialogComponent,
