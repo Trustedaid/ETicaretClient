@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {BaseDialog} from "../base/base-dialog";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {NgxSpinnerService} from "ngx-spinner";
-import {CustomToastrService} from "../../services/ui/custom-toastr.service";
 import {QrCodeService} from "../../services/common/qr-code.service";
 import {DomSanitizer, SafeHtml, SafeUrl} from "@angular/platform-browser";
 import {SpinnerType} from "../../base/base.component";

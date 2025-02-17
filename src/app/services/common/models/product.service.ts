@@ -92,4 +92,20 @@ export class ProductService {
     successCallBack();
 
   }
+
+  async updateStockQrCodeToProduct(productId : string, stock: number, successCallBack: () => void ) {
+    const observable = this.httpClientService.put({
+      controller: "products",
+      action: "qrcode",
+    }, {
+      productId,
+      stock
+    });
+
+    await firstValueFrom(observable);
+    successCallBack();
+
+
+
+  }
 }

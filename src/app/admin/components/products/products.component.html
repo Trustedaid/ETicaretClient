@@ -1,3 +1,7 @@
+<button style="margin: 15px" mat-raised-button class="create-product-button" color="primary" (click)="showProductQrCodeReading()">Product QR Code Reading
+</button>
+
+
 <mat-drawer-container class="product-create">
   <mat-drawer mode="side" opened>
     <app-create (createdProduct)="createdProduct($event)"></app-create>
@@ -7,4 +11,4 @@
   </mat-drawer-content>
 </mat-drawer-container>
 <hr/>
-<app-file-upload [options]="fileUploadOptions"> </app-file-upload>
+<app-file-upload [options]="fileUploadOptions"></app-file-upload>

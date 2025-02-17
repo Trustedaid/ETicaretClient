@@ -5,6 +5,8 @@ import {HttpClientService} from '../../../services/common/http-client.service';
 import {Create_Product} from "../../../contracts/create_product";
 import {ListComponent} from "./list/list.component";
 import {FileUploadOptions} from "../../../services/common/file-upload/file-upload.component";
+import {DialogService} from "../../../services/common/dialog.service";
+import {QrcodeReadingDialogComponent} from "../../../dialogs/qrcode-reading-dialog/qrcode-reading-dialog.component";
 
 
 @Component({
@@ -14,7 +16,7 @@ import {FileUploadOptions} from "../../../services/common/file-upload/file-uploa
 })
 export class ProductsComponent extends BaseComponent implements OnInit {
 
-  constructor(spinner: NgxSpinnerService, private httpClientService: HttpClientService) {
+  constructor(spinner: NgxSpinnerService, private httpClientService: HttpClientService, private dialogService: DialogService) {
     super(spinner);
 
   }
@@ -28,38 +30,31 @@ export class ProductsComponent extends BaseComponent implements OnInit {
     action: "upload",
     controller: "products",
     explanation: "Drag and drop a file here or click to browse..",
-    isAdminPage : true,
+    isAdminPage: true,
     accept: ".jpg, .png, .jpeg, .gif, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .rar, .zip"
 
   };
+
   createdProduct(product: Create_Product) {
     this.listComponents.getProducts();
 
   }
 
+  showProductQrCodeReading() {
+    this.dialogService.openDialog({
+      componentType: QrcodeReadingDialogComponent,
+      data: null,
+      options: {
+        width: "1000px",
+
+      },
+      afterClosed: () => {
+      }
+    })
+  }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // this.showSpinner(SpinnerType.BallPulse);
